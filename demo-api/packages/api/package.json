@@ -1,0 +1,34 @@
+{
+  "name": "@demo-api/api",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./src/*.ts"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsdown"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:",
+    "@demo-api/config": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@trpc/server": "catalog:",
+    "@trpc/client": "^11.5.0",
+    "hono": "catalog:",
+    "@prisma/client": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@demo-api/auth": "workspace:*",
+    "@demo-api/db": "workspace:*"
+  }
+}
