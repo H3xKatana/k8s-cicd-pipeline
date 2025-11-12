@@ -37,11 +37,14 @@ WORKDIR /app
 # Copy package manager files
 COPY package.json pnpm-workspace.yaml turbo.json ./
 
-# Copy workspace packages
+# Copy workspace packages for proper dependency resolution
+COPY packages/ packages/
+
+# Copy the server package.json as well
 COPY apps/server/package.json apps/server/package.json
 
 # Install only production dependencies
-RUN pnpm install 
+RUN pnpm install --prod 
 
 # Copy the built application
 COPY --from=builder /app/apps/server/dist ./apps/server/dist
