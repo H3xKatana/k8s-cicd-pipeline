@@ -27,6 +27,9 @@ FROM base AS builder
 # Copy all source code (overwrites previous copies to ensure latest files)
 COPY . .
 
+# Generate Prisma client before building
+RUN pnpm --filter @demo-api/db db:generate
+
 # Build the project using turbo
 RUN pnpm build
 
