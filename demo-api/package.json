@@ -2,6 +2,10 @@
   "name": "demo-api",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/H3xKatana/k8s-cicd-pipeline.git"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"

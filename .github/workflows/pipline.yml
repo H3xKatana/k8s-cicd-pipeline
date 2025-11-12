@@ -48,6 +48,10 @@ jobs:
           type=ref,event=pr
           type=sha,prefix={{branch}}-
           latest
+        labels: |
+          org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          org.opencontainers.image.revision=${{ github.sha }}
+          org.opencontainers.image.ref.name=${{ github.ref }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
