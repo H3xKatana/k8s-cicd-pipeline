@@ -61,6 +61,11 @@ COPY --from=builder /app/apps/server/dist ./apps/server/dist
 # Copy any necessary workspace packages that were built
 COPY --from=builder /app/packages ./packages
 
+LABEL org.opencontainers.image.source=https://github.com/H3xKatana/H3xKatana/k8s-cicd-pipeline
+LABEL org.opencontainers.image.description="demo microservice API server built in monorepo Hono ,turborepo ,prisma , Sqlite."
+LABEL org.opencontainers.image.licenses=MIT
+
+
 # Expose port 3000
 EXPOSE 3000
 
