@@ -12,7 +12,7 @@ WORKDIR /app
 COPY package.json pnpm-workspace.yaml turbo.json ./
 
 # Install dependencies using pnpm
-RUN pnpm install --frozen-lockfile
+RUN pnpm install 
 
 
 # Build stage
@@ -41,7 +41,7 @@ COPY package.json pnpm-workspace.yaml turbo.json ./
 COPY apps/server/package.json apps/server/package.json
 
 # Install only production dependencies
-RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install 
 
 # Copy the built application
 COPY --from=builder /app/apps/server/dist ./apps/server/dist
