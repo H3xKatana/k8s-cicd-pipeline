@@ -8,8 +8,14 @@ RUN npm install -g pnpm@10.11.1
 # Create app directory
 WORKDIR /app
 
-# Copy root package files
+# Copy package manager files
 COPY package.json pnpm-workspace.yaml turbo.json ./
+
+# Copy workspace packages for proper dependency resolution
+COPY packages/ packages/
+
+# Copy the server package.json as well
+COPY apps/server/package.json apps/server/package.json
 
 # Install dependencies using pnpm
 RUN pnpm install 
@@ -18,7 +24,7 @@ RUN pnpm install
 # Build stage
 FROM base AS builder
 
-# Copy source code
+# Copy all source code (overwrites previous copies to ensure latest files)
 COPY . .
 
 # Build the project using turbo
@@ -37,7 +43,7 @@ WORKDIR /app
 # Copy package manager files
 COPY package.json pnpm-workspace.yaml turbo.json ./
 
-# Copy workspace packages for proper dependency resolution
+# Copy all packages for proper dependency resolution
 COPY packages/ packages/
 
 # Copy the server package.json as well
